@@ -11,49 +11,29 @@ namespace UI
 {
     public partial class Form1 : Form
     {
-        private string _TreeRootParent = "root";
-        public Form1()
+        private string TreeRootParent;
+        public Form1(string Parent)
         {
             InitializeComponent();
-            this.ShowTree(this._TreeRootParent);
+            TreeNodeCollection Nodes = this.treeView1.Nodes;
+            this.TreeRootParent = Parent;
+            this.ShowTree(this.TreeRootParent,ref Nodes);
         }
-        public string TreeRootParent
-        {
-            get { return this._TreeRootParent; }
-            set { this._TreeRootParent = value; }
-        }
-        private void ShowTree(string Parent)
+        private void ShowTree(string Parent,ref TreeNodeCollection Nodes)
         {
             TreeNode Node;
-            Model.TreeData Data;
-            Data.Parent = Parent;
+            TreeNodeCollection Nodes1;
+            Model.TreeData Data =new Model.TreeData(Parent);
             BLL.dim_manage TreeData = new BLL.dim_manage(ref Data);
             if (Data.Count > 0)
             {
                 string[] arr;
                 for (int i = 0; i < Data.Count; i++){
                     arr = Data[i];
-                    Node = this.treeView1.Nodes.Add(arr[0], arr[1]);
+                    Node = Nodes.Add(arr[0], arr[1],Data.Parent == this.TreeRootParent ? 0 :2, Data.Parent==this.TreeRootParent ? 1 : 3);
                     Node.Tag = arr[2];
-                    this.ShowTree(Node.Name,ref Node);
-                }
-            }
-
-        }
-        private void ShowTree(string Parent,ref TreeNode Node)
-        {
-            Model.TreeData Data;
-            Data.Parent = Parent;
-            BLL.dim_manage TreeData = new BLL.dim_manage(ref Data);
-            if (Data.Count > 0)
-            {
-                string[] arr;
-                for (int i = 0; i < Data.Count; i++)
-                {
-                    arr = Data[i];
-                    Node = Node.Nodes.Add(arr[0], arr[1]);
-                    Node.Tag = arr[2];
-                    this.ShowTree(Node.Name, ref Node);
+                    Nodes1 = Node.Nodes;
+                    this.ShowTree(Node.Name,ref Nodes1);
                 }
             }
 
