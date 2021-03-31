@@ -1,0 +1,17 @@
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\UI.exe.config
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\UI.exe
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\UI.pdb
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\BLL.dll
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\Model.dll
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\DAL.dll
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\BLL.pdb
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\Model.pdb
+C:\Users\ghui-wang\source\repos\maranda\UI\bin\Debug\DAL.pdb
+C:\Users\ghui-wang\source\repos\maranda\UI\obj\Debug\UI.csprojAssemblyReference.cache
+C:\Users\ghui-wang\source\repos\maranda\UI\obj\Debug\UI.Form1.resources
+C:\Users\ghui-wang\source\repos\maranda\UI\obj\Debug\UI.Properties.Resources.resources
+C:\Users\ghui-wang\source\repos\maranda\UI\obj\Debug\UI.csproj.GenerateResource.cache
+C:\Users\ghui-wang\source\repos\maranda\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
+C:\Users\ghui-wang\source\repos\maranda\UI\obj\Debug\UI.csproj.CopyComplete
+C:\Users\ghui-wang\source\repos\maranda\UI\obj\Debug\UI.exe
+C:\Users\ghui-wang\source\repos\maranda\UI\obj\Debug\UI.pdb

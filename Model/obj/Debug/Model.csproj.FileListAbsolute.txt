@@ -1,0 +1,6 @@
+C:\Users\ghui-wang\source\repos\maranda\Model\bin\Debug\Model.dll
+C:\Users\ghui-wang\source\repos\maranda\Model\bin\Debug\Model.pdb
+C:\Users\ghui-wang\source\repos\maranda\Model\obj\Debug\Model.csprojAssemblyReference.cache
+C:\Users\ghui-wang\source\repos\maranda\Model\obj\Debug\Model.csproj.CoreCompileInputs.cache
+C:\Users\ghui-wang\source\repos\maranda\Model\obj\Debug\Model.dll
+C:\Users\ghui-wang\source\repos\maranda\Model\obj\Debug\Model.pdb

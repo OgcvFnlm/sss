@@ -1,0 +1,6 @@
+C:\Users\ghui-wang\source\repos\maranda\DAL\bin\Debug\DAL.dll
+C:\Users\ghui-wang\source\repos\maranda\DAL\bin\Debug\DAL.pdb
+C:\Users\ghui-wang\source\repos\maranda\DAL\obj\Debug\DAL.csprojAssemblyReference.cache
+C:\Users\ghui-wang\source\repos\maranda\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+C:\Users\ghui-wang\source\repos\maranda\DAL\obj\Debug\DAL.dll
+C:\Users\ghui-wang\source\repos\maranda\DAL\obj\Debug\DAL.pdb
