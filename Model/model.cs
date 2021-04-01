@@ -22,7 +22,7 @@ namespace Model
         }
         public int Count
         {
-            get { return this.DataArr == this.DataArr.Count; }
+            get { return this.DataArr.Count; }
         } 
         public void Add(string code,string name,string tag)
         {
