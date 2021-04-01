@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 namespace UI
 {
-    public partial class Form1 : Form
+    public partial class dim_manage : Form
     {
         private string TreeRootParent;
-        public Form1(string Parent)
+        public dim_manage(string Parent)
         {
             InitializeComponent();
             TreeNodeCollection Nodes = this.treeView1.Nodes;
