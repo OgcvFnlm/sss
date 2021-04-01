@@ -6,22 +6,37 @@ using System.Threading.Tasks;
 
 namespace BLL
 {
-    public class dim_manage
+    public class FillTreeData
     {
-        public dim_manage(ref Model.TreeData Data)
+        public static void FillData(ref Model.TreeData TreeData,string FrmName,string parent)
         {
-            string[] arr;
-            int i = 0;
-            string sql = "select * from dimensions where parent = '" + Data.Parent + "'";
-            DAL.MyOdbc DataReader = new DAL.MyOdbc(sql);
-            arr = DataReader[i];
-            while (arr != null)
+            string sql =null;
+            switch (FrmName)
             {
-                Data.Add(arr[0], arr[1], arr[2]);
-                i = i + 1;
-                arr = DataReader[i];
+                case "accs":
+                    sql = "select code,title,parent,dim_number as tag from accounts where parent = '" + (parent == null ? "root" : parent) + "'";
+                    break;
+                case "dims":
+                    sql = "select code,title,parent,NULL as tag from dimensions where parent = '" + (parent == null ? "root" : parent) + "'";
+                    break;
+                case "cash":
+                    sql = "select code,title,parent,NULL as tag from dimensions where parent = '" + (parent == null ? "cash" : parent ) + "'";
+                    break;
             }
-            
+            if(sql != null)
+            {
+                int i = 0;
+                string[] arr;
+                DAL.MyOdbc DataReader = new DAL.MyOdbc(sql);
+                arr = DataReader[i];
+                while (arr != null)
+                {
+                    TreeData.data =arr;
+                    i++;
+                    arr = DataReader[i];
+
+                }
+            }
         }
     }
 }

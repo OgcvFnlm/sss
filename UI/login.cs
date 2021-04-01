@@ -16,5 +16,26 @@ namespace UI
         {
             InitializeComponent();
         }
+        public class TreeSelectFrm : TreeOnly
+        {
+
+            public TreeSelectFrm(string Name)
+            {
+                base.Name = Name;
+            }
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            TreeOnly frm = new TreeSelectFrm("cash");
+            frm.loadTree();
+            frm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            TreeOnly frm = new TreeSelectFrm("dims");
+            frm.loadTree();
+            frm.ShowDialog();
+        }
     }
 }
