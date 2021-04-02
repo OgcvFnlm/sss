@@ -25,17 +25,17 @@ namespace BLL
             }
             if(sql != null)
             {
-                int i = 0;
-                string[] arr;
-                DAL.MyOdbc DataReader = new DAL.MyOdbc(sql);
-                arr = DataReader[i];
-                while (arr != null)
-                {
-                    TreeData.data =arr;
-                    i++;
-                    arr = DataReader[i];
+                //int i = 0;
+                //string[] arr;
+               new DAL.MyOdbc(sql,TreeData.ds);
+                //arr = DataReader[i];
+                //while (arr != null)
+                //{
+                //    TreeData.data =arr;
+                //    i++;
+                //    arr = DataReader[i];
 
-                }
+                //}
             }
         }
     }
