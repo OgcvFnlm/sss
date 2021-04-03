@@ -1,42 +1,39 @@
-﻿using System;
+﻿using System.Windows.Forms;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace BLL
 {
-    public class FillTreeData
+    public abstract class TreeLogic
     {
-        public static void FillData(ref Model.TreeData TreeData,string FrmName,string parent)
+        private string root;
+        private Model.TreeData TreeData;
+        private DAL.MyOdbc MyDal = new DAL.MyOdbc();
+        public TreeLogic(string root, Model.TreeData TreeData)
         {
-            string sql =null;
-            switch (FrmName)
+            this.root = root;
+            this.TreeData = TreeData;
+            MyDal.QueryDatabase(TreeData.ds, TreeData.sql);
+        }
+        public void GetTreeNodes(TreeNodeCollection Nodes,string parent)
+        {
+            TreeNode Node;
+            IEnumerable<Model.TreeData.NodeInfo> NodeTable = TreeData.NodeTable(parent ?? root);
+            foreach (Model.TreeData.NodeInfo item in NodeTable)
             {
-                case "accs":
-                    sql = "select code,title,parent,dim_number as tag from accounts where parent = '" + (parent == null ? "root" : parent) + "'";
-                    break;
-                case "dims":
-                    sql = "select code,title,parent,NULL as tag from dimensions where parent = '" + (parent == null ? "root" : parent) + "'";
-                    break;
-                case "cash":
-                    sql = "select code,title,parent,NULL as tag from dimensions where parent = '" + (parent == null ? "cash" : parent ) + "'";
-                    break;
-            }
-            if(sql != null)
-            {
-                //int i = 0;
-                //string[] arr;
-               new DAL.MyOdbc(sql,TreeData.ds);
-                //arr = DataReader[i];
-                //while (arr != null)
-                //{
-                //    TreeData.data =arr;
-                //    i++;
-                //    arr = DataReader[i];
-
-                //}
+                Node = Nodes.Add(item.code, item.title, item.parent == root ? 0 : item.children == 0 ? 2 : 4, item.parent == root ? 1 : item.children == 0 ? 3 : 5);
+                GetTreeNodes(Node.Nodes, item.code);
             }
         }
+    }
+    public class CashTreeLogic : TreeLogic
+    {
+        public CashTreeLogic() : base("cash", new Model.CashTreeData()) { }
+    }
+    public class DimTreeLogic : TreeLogic
+    {
+        public DimTreeLogic() : base("root", new Model.DimTreeData()) { }
+    }
+    public class AccTreeLogic : TreeLogic
+    {
+        public AccTreeLogic() : base("root", new Model.AccTreeData()) { }
     }
 }

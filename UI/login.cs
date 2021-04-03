@@ -10,26 +10,27 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class login : Form
+    public partial class login : Form, FrameWork.TreeFrom.CallTreeFrm
     {
-        public delegate void ShowTreeWindowEventHandler(Object sender, ShowTreeWindowEventArgs e);
-        public event ShowTreeWindowEventHandler ShowTreeWindowClick;
-        public class ShowTreeWindowEventArgs : EventArgs
+        public delegate void LoadTreeEventHandler(FrameWork.TreeFrom.CallTreeFrm sender, FrameWork.TreeFrom.LoadTreeEventArg e);
+        public event LoadTreeEventHandler LoadTreeClick;
+        public class LoadTreeEventArgs : EventArgs, FrameWork.TreeFrom.LoadTreeEventArg
         {
-            public string name { get; }
-            public string caption { get; }
-            public ShowTreeWindowEventArgs(string name,string caption)
+            public BLL.TreeLogic TreeLogic { set; get; }
+            public LoadTreeEventArgs(BLL.TreeLogic TL)
             {
-                this.name = name;
-                this.caption = caption;
+                TreeLogic = TL;
             }
         }
-        private void OnShowTreeWindow(TreeOnly frm,ShowTreeWindowEventArgs e)
+        public void TreeNodeSelected(FrameWork.TreeFrom.TreeNodeSelectedEventArg e)
         {
-            if (ShowTreeWindowClick != null)
+
+        }
+        private void OnLoadTree(FrameWork.TreeFrom.CallTreeFrm frm, FrameWork.TreeFrom.LoadTreeEventArg e)
+        {
+            if (LoadTreeClick != null)
             {
-                ShowTreeWindowClick(this, e);
-                frm.ShowDialog();
+                LoadTreeClick(this, e);
             }
         }
         public login()
@@ -38,24 +39,27 @@ namespace UI
         }
         private void button1_Click(object sender, EventArgs e)
         {
-   
-            TreeOnly frm = new TreeOnly();
-            this.ShowTreeWindowClick = frm.loadTree;
-            OnShowTreeWindow(frm, new ShowTreeWindowEventArgs("cash", "现金流项目选择器"));
+
+            FrameWork.TreeFrom.TreeOnly frm = new FrameWork.TreeFrom.TreeOnly(new Size(230,320),new Size(230,320));
+            LoadTreeClick = frm.LoadTreeNode;
+            OnLoadTree(this, new LoadTreeEventArgs(new BLL.CashTreeLogic()));
+            frm.ShowDialog();
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            TreeOnly frm = new TreeOnly();
-            this.ShowTreeWindowClick = frm.loadTree;
-            OnShowTreeWindow(frm, new ShowTreeWindowEventArgs("dims", "辅助核算项目选择器"));
+            FrameWork.TreeFrom.TreeOnly frm = new FrameWork.TreeFrom.TreeOnly(new Size(230, 320), new Size(230, 320));
+            LoadTreeClick = frm.LoadTreeNode;
+            OnLoadTree(this, new LoadTreeEventArgs(new BLL.DimTreeLogic()));
+            frm.ShowDialog();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            TreeOnly frm = new TreeOnly();
-            this.ShowTreeWindowClick = frm.loadTree;
-            OnShowTreeWindow(frm, new ShowTreeWindowEventArgs("accs", "会计科目选择器"));
+            FrameWork.TreeFrom.TreeOnly frm = new FrameWork.TreeFrom.TreeOnly(new Size(230, 320), new Size(230, 320));
+            LoadTreeClick = frm.LoadTreeNode;
+            OnLoadTree(this, new LoadTreeEventArgs(new BLL.AccTreeLogic()));
+            frm.ShowDialog();
         }
     }
 }
