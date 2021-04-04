@@ -1,48 +1,14 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Data;
 using System.Collections.Generic;
 
 namespace Model
 {
-    //public struct TreeData
-    //{
-    //    private List<string[]> DataArr;
-    //    public string[] data
-    //    {
-    //        set
-    //        {
-    //            if (this.DataArr == null)
-    //            {
-    //                this.DataArr = new List<string[]>();
-    //            }
-    //            this.DataArr.Add(value);
-    //        }
-    //    }
-    //    public int Count
-    //    {
-    //        get { return this.DataArr == null ? 0 : this.DataArr.Count; }
-    //    } 
-    //    public string[] this[int i]
-    //    {
-    //        get
-    //        {
-    //            if (i>=0 && i<= this.DataArr.Count - 1)
-    //            {
-    //                return this.DataArr[i];
-    //            }
-    //            else
-    //            {
-    //                return null;
-    //            }
-    //        }
-    //    }
-
-    //}
-    public class TreeData
+    public abstract class TreeData
     {
         public string sql;
         public DataSet ds;
+        public abstract string Root();
         public TreeData(string TreeSql)
         {
             ds = new DataSet();
@@ -67,7 +33,7 @@ namespace Model
         public virtual IEnumerable<NodeInfo> NodeTable(string parent)
         {
             IEnumerable<NodeInfo> matches = from row
-                            in ds.Tables[0].AsEnumerable()
+                                          in ds.Tables[0].AsEnumerable()
                                           where row.Field<string>("parent") == parent
                                           orderby row.Field<string>("code")
                                           select new NodeInfo(
@@ -85,16 +51,32 @@ namespace Model
     public class CashTreeData:TreeData
     {
         private const string CashTreeSql = "select code,title,parent,NULL as tag from dimensions";
+        private string _root = "cash";
         public CashTreeData() : base(CashTreeSql) { }
+        public override string Root()
+        {
+            return _root;
+        }
     }
     public class DimTreeData : TreeData
     {
         private const string DimTreeSql = "select code,title,parent,NULL as tag from dimensions";
+        private string _root = "root";
         public DimTreeData() : base(DimTreeSql) { }
+        public override string Root()
+        {
+            return _root;
+        }
+
     }
     public class AccTreeData : TreeData
     {
         private const string AccTreeSql = "select code,title,parent,dim_number as tag from accounts";
+        private string _root = "root";
         public AccTreeData() : base(AccTreeSql) { }
+        public override string Root()
+        {
+            return _root;
+        }
     }
 }

@@ -118,22 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="NodeHasChildN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="AddNodeChild" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\SmartArtAddShapeAbove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BindDims" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\AccessRelinkLists.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ShowNodeInfo" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\ContentsAndIndex.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteBind" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HyperlinkRemove.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="DeleteNode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RecordsDeleteRecord.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="RenameNode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\InkFeltTipPen.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="AddRootNode" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\RecordsExpandAllSubdatasheets.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="NodeHasChild" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NodeHasChild_未选中.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NodeHasChildS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NodeHasChild_选中.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NodeNoChildN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="NodeNoChild" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NodeNoChild_未选中.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NodeNoChildS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NodeNoChild_选中.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="NodeRootN" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="NodeRoot" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NodeRoot_未选中.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="NodeRootS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NodeRoot_选中.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BindAccs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\HeaderFooterLinkToPrevious.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

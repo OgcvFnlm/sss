@@ -63,9 +63,69 @@ namespace UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap NodeHasChildN {
+        public static System.Drawing.Bitmap AddNodeChild {
             get {
-                object obj = ResourceManager.GetObject("NodeHasChildN", resourceCulture);
+                object obj = ResourceManager.GetObject("AddNodeChild", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap AddRootNode {
+            get {
+                object obj = ResourceManager.GetObject("AddRootNode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap BindAccs {
+            get {
+                object obj = ResourceManager.GetObject("BindAccs", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap BindDims {
+            get {
+                object obj = ResourceManager.GetObject("BindDims", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap DeleteBind {
+            get {
+                object obj = ResourceManager.GetObject("DeleteBind", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap DeleteNode {
+            get {
+                object obj = ResourceManager.GetObject("DeleteNode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap NodeHasChild {
+            get {
+                object obj = ResourceManager.GetObject("NodeHasChild", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -83,9 +143,9 @@ namespace UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap NodeNoChildN {
+        public static System.Drawing.Bitmap NodeNoChild {
             get {
-                object obj = ResourceManager.GetObject("NodeNoChildN", resourceCulture);
+                object obj = ResourceManager.GetObject("NodeNoChild", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -103,9 +163,9 @@ namespace UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap NodeRootN {
+        public static System.Drawing.Bitmap NodeRoot {
             get {
-                object obj = ResourceManager.GetObject("NodeRootN", resourceCulture);
+                object obj = ResourceManager.GetObject("NodeRoot", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -116,6 +176,26 @@ namespace UI.Properties {
         public static System.Drawing.Bitmap NodeRootS {
             get {
                 object obj = ResourceManager.GetObject("NodeRootS", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap RenameNode {
+            get {
+                object obj = ResourceManager.GetObject("RenameNode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap ShowNodeInfo {
+            get {
+                object obj = ResourceManager.GetObject("ShowNodeInfo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
