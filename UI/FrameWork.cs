@@ -77,7 +77,7 @@ namespace UI.FrameWork
 
             public abstract void InitSize();
 
-            private void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
+            public virtual void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
             {
                 if (e.Button == MouseButtons.Right && e.Node != null)
                 {
@@ -217,21 +217,26 @@ namespace UI.FrameWork
             public TreeTableQuery(string Caption)
             {
                 this.Text = Caption;
-                Table = new DataGridView();
-                //{
-                //    Size = new Size(230, 30),
-                //    Location = new Point(0, 290),
-                //    Text = "点击确认选择",
-                //    Font = new Font("宋体", 11)
-                //};
-                ConfirmButton.MouseClick += ConfirmSelected;
-                this.Controls.Add(ConfirmButton);
+                Table = new DataGridView
+                {
+                    Size = new Size(300, 320),
+                    Location = new Point(150, 0),
+                };
+                this.Controls.Add(Table);
             }
             public override void InitSize()
             {
-                base.ClientSize = new Size(230, 320);
+                base.ClientSize = new Size(450, 320);
                 base.Tree.Location = new Point(0, 0);
-                base.Tree.Size = new Size(230, 320);
+                base.Tree.Size = new Size(150, 320);
+            }
+            public override void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
+            {
+                if (e.Button == MouseButtons.Left && e.Node != null)
+                {
+                    Tree.SelectedNode = e.Node;
+                    Table.DataSource = TreeLogic.GetTableSource(e.Node);
+                }
             }
         }
     }

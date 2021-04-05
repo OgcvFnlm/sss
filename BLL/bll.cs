@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.Data;
 namespace BLL
 {
     public abstract class TreeLogic
     {
-        private Model.TreeData TreeData;
+        public Model.TreeData TreeData;
         private DAL.MyOdbc MyDal = new DAL.MyOdbc();
         public TreeLogic(Model.TreeData TreeData)
         {
@@ -16,6 +17,7 @@ namespace BLL
         {
             return Node == null ? "请先选择节点！" : Node.Parent != null ? "请选择根节点！" : null;
         }
+        public abstract DataTable GetTableSource(TreeNode Node);
         public void GetTreeNodes(TreeNodeCollection Nodes,string parent)
         {
             TreeNode Node;
@@ -40,13 +42,25 @@ namespace BLL
     public class CashTreeLogic : TreeLogic
     {
         public CashTreeLogic() : base( new Model.CashTreeData()) { }
+        public override DataTable GetTableSource(TreeNode Node)
+        {
+            return TreeData
+        }
     }
     public class DimTreeLogic : TreeLogic
     {
         public DimTreeLogic() : base( new Model.DimTreeData()) { }
+        public override DataTable GetTableSource(TreeNode Node)
+        {
+            throw new NotImplementedException();
+        }
     }
     public class AccTreeLogic : TreeLogic
     {
         public AccTreeLogic() : base( new Model.AccTreeData()) { }
+        public override DataTable GetTableSource(TreeNode Node)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

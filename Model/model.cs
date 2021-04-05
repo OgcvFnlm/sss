@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Data;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace Model
 {
@@ -56,6 +57,15 @@ namespace Model
         public override string Root()
         {
             return _root;
+        }
+        public DataTable TableData(TreeNode Node)
+        {
+            IEnumerable<DataRow> matches = from row
+                                            in ds.Tables[0].AsEnumerable()
+                                            where row.Field<string>("parent") == "root"
+                                            orderby row.Field<string>("code")
+                                            select row;
+            return matches;
         }
     }
     public class DimTreeData : TreeData
