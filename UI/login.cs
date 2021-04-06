@@ -23,12 +23,11 @@ namespace UI
             Menu.Items.Add("删除已选项目");
             Menu.Items.Add("修改项目名称");
             Menu.Items.Add("查看项目介绍");
-            //FrameWork.TreeFrom.TreeOnlyQuery frm = new FrameWork.TreeFrom.TreeOnlyQuery("现金流项目选择器");
-            FrameWork.TreeFrom.TreeOnlyConfirm frm = new FrameWork.TreeFrom.TreeOnlyConfirm("现金流项目选择器",true);
-            //FrameWork.TreeFrom.TreeTableQuery frm = new FrameWork.TreeFrom.TreeTableQuery("现金流项目选择器");
-            LoadTreeSubmit += frm.LoadTree;
-            base.OnLoadTreeSubmit(this, new FrameWork.TreeFrom.LoadTreeEventArgs(new BLL.CashTreeLogic(), Menu,e,sender));
-            frm.ShowDialog();
+            OnLoadTreeSubmit(
+                this,
+                new FrameWork.TreeFrom.TreeOnlyConfirm("现金流项目选择器", true),
+                new FrameWork.TreeFrom.LoadTreeEventArgs(new BLL.CashTreeLogic(), Menu, e, sender)
+            );
         }
 
         private void button2_Click(object sender, EventArgs e)

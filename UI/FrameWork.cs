@@ -25,12 +25,10 @@ namespace UI.FrameWork
         {
             public object Node_Row;
             public EventArgs e;
-            public object sender;
-            public TreeConfirmEventArgs(object Node_Row, EventArgs e, object sender)
+            public TreeConfirmEventArgs(object Node_Row, EventArgs e)
             {
                 this.Node_Row = Node_Row;
                 this.e = e;
-                this.sender = sender;
             }
         }
         public abstract class TreeForm:Form
@@ -41,6 +39,7 @@ namespace UI.FrameWork
             public Boolean TreeCheckBox;
             private ImageList Imgs = new ImageList();
             public TreeView Tree = new TreeView();
+            public Button ConfirmButton = new Button();
             private ContextMenuStrip RightMenu;
             private CallTreeForm Caller;
             public BLL.TreeLogic TreeLogic;
@@ -71,6 +70,13 @@ namespace UI.FrameWork
                 Tree.ImageList = Imgs;
                 Tree.NodeMouseClick += NodeClick;
 
+                ConfirmButton.Size = new Size(100, 30);
+                ConfirmButton.FlatStyle = FlatStyle.Flat;
+                ConfirmButton.Image = Properties.Resources.TreeConfirm;
+                ConfirmButton.Visible = false;
+                ConfirmButton.FlatAppearance.BorderSize = 0;
+                ConfirmButton.MouseClick += TreeConfirm;
+
                 ClientSize = new Size(230, 320);
                 Tree.Location = new Point(0, 0);
                 Tree.Size = new Size(230, 320);
@@ -82,7 +88,9 @@ namespace UI.FrameWork
                 this.ResumeLayout(false);
             }
 
-            public virtual void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
+            public abstract void TreeConfirm(object sender, EventArgs e);
+
+            public void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
             {
                 if (e.Button == MouseButtons.Right && e.Node != null)
                 {
@@ -91,7 +99,6 @@ namespace UI.FrameWork
                 }
 
             }
-
             private void BindRightMenu(ContextMenuStrip Menu)
             {
                 RightMenu = Menu;
@@ -141,8 +148,9 @@ namespace UI.FrameWork
                 }
             }
 
-            public void OnTreeConfirmSubmit(TreeConfirmEventArgs e)
+            public void OnTreeConfirmSubmit(object sender, EventArgs e)
             {
+
                 if (TreeConfirmSubmit != null)
                 {
                     TreeConfirmSubmit(e);
@@ -165,12 +173,11 @@ namespace UI.FrameWork
 
             public abstract void TreeConfirm(TreeConfirmEventArgs e);
 
-            public void OnLoadTreeSubmit(CallTreeForm sender, LoadTreeEventArgs e)
+            public void OnLoadTreeSubmit(CallTreeForm sender,TreeForm TreeForm, LoadTreeEventArgs e)
             {
-                if (LoadTreeSubmit != null)
-                {
-                    LoadTreeSubmit(sender, e);
-                }
+                LoadTreeSubmit = TreeForm.LoadTree;
+                LoadTreeSubmit(sender, e);
+                TreeForm.ShowDialog();
             }
         }
         public class TreeOnlyQuery : TreeForm { 
