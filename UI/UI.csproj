@@ -143,126 +143,6 @@
     <None Include="Resources\NodeHasChild_未选中.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\00358.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\00539.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\00620.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\00644.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\00680.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\00925.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01087.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01088.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01446.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01589.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01592.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01657.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01660.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01664.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01668.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01671.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01733.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01755.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01786.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\01907.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\02134.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\02298.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\02599.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\02696.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\02703.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\03679.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\03838.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\03866.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\04088.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\06933.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\06938.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\06939.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\06954.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\06956.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\09077.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\09080.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\09141.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\09595.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\09597.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\09982.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\TableRowsDelete.png" />
   </ItemGroup>
   <ItemGroup>
@@ -294,6 +174,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\HeaderFooterLinkToPrevious.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\frmLogin_确认.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

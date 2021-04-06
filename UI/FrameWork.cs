@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace UI.FrameWork
 {
@@ -22,12 +23,12 @@ namespace UI.FrameWork
         }
         public class TreeConfirmEventArgs
         {
-            public TreeNode[] SelectedNodes;
+            public object Node_Row;
             public EventArgs e;
             public object sender;
-            public TreeConfirmEventArgs(TreeNode[] SelectedNodes, EventArgs e, object sender)
+            public TreeConfirmEventArgs(object Node_Row, EventArgs e, object sender)
             {
-                this.SelectedNodes = SelectedNodes;
+                this.Node_Row = Node_Row;
                 this.e = e;
                 this.sender = sender;
             }
@@ -37,14 +38,17 @@ namespace UI.FrameWork
             public delegate void TreeConfirmEventHandler(TreeConfirmEventArgs e);
             public event TreeConfirmEventHandler TreeConfirmSubmit;
 
+            public Boolean TreeCheckBox;
             private ImageList Imgs = new ImageList();
             public TreeView Tree = new TreeView();
             private ContextMenuStrip RightMenu;
-            public BLL.TreeLogic TreeLogic;
             private CallTreeForm Caller;
+            public BLL.TreeLogic TreeLogic;
 
-            public TreeForm()
+            public TreeForm(string Caption,Boolean TreeCheckBox)
             {
+                this.TreeCheckBox = TreeCheckBox;
+                this.Text = Caption;
                 this.SuspendLayout();
 
                 #region 初始化ImageList
@@ -67,15 +71,16 @@ namespace UI.FrameWork
                 Tree.ImageList = Imgs;
                 Tree.NodeMouseClick += NodeClick;
 
+                ClientSize = new Size(230, 320);
+                Tree.Location = new Point(0, 0);
+                Tree.Size = new Size(230, 320);
+                Tree.BorderStyle = BorderStyle.Fixed3D;
                 this.MinimizeBox = false;
                 this.MaximizeBox = false;
                 this.FormBorderStyle = FormBorderStyle.FixedSingle;
                 this.Controls.Add(Tree);
-                InitSize();
                 this.ResumeLayout(false);
             }
-
-            public abstract void InitSize();
 
             public virtual void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
             {
@@ -86,6 +91,7 @@ namespace UI.FrameWork
                 }
 
             }
+
             private void BindRightMenu(ContextMenuStrip Menu)
             {
                 RightMenu = Menu;
@@ -149,6 +155,7 @@ namespace UI.FrameWork
                 TreeConfirmSubmit = Caller.TreeConfirm;
                 TreeLogic.GetTreeNodes(Tree.Nodes, null);
                 BindRightMenu(e.RightMenu);
+                Tree.CheckBoxes = TreeCheckBox;
             }
         }
         public abstract class CallTreeForm:Form
@@ -167,68 +174,75 @@ namespace UI.FrameWork
             }
         }
         public class TreeOnlyQuery : TreeForm { 
-            public TreeOnlyQuery(string Caption)
-            {
-                this.Text = Caption;
-            }
-            public override void InitSize()
-            {
-                base.ClientSize = new Size(230, 320);
-                base.Tree.Location = new Point(0, 0);
-                base.Tree.Size = new Size(230, 320);
-            }
+            public TreeOnlyQuery(string Caption,Boolean TreeCheckBox = false) : base(Caption, TreeCheckBox) { }
         }
-        public class TreeOnlyConfirm : TreeForm
+        public class TreeOnlyConfirm : TreeOnlyQuery
         {
             private Button ConfirmButton;
-            public TreeOnlyConfirm(string Caption)
+            public TreeOnlyConfirm(string Caption,Boolean TreeCheckBox):base(Caption, TreeCheckBox)
             {
-                this.Text = Caption;
-                ConfirmButton = new Button { Size = new Size(230, 30) ,
-                                             Location = new Point(0, 290),
-                                             Text = "点击确认选择",
-                                             Font = new Font("宋体",11)};
+                Tree.Size = new Size(230, 270);
+                ConfirmButton = new Button {
+                    Size = new Size(100, 30),
+                    Location = new Point(65, 280),
+                    FlatStyle = FlatStyle.Flat,
+                    Image = Properties.Resources.TreeConfirm
+                };
+                ConfirmButton.FlatAppearance.BorderSize = 0;
                 ConfirmButton.MouseClick += ConfirmSelected;
                 this.Controls.Add(ConfirmButton);
             }
-            public override void InitSize()
-            {
-                base.ClientSize = new Size(230, 320);
-                base.Tree.Location = new Point(0, 0);
-                base.Tree.Size = new Size(230, 290);
-            }
             private void ConfirmSelected(object sender, EventArgs e)
             {
-                string ErrStr = TreeLogic.CheckSelectedNode(Tree.SelectedNode);
-                if (ErrStr == null)
+                int i = 0;
+                object SelectedNode;
+                if (TreeCheckBox)
                 {
-                    base.OnTreeConfirmSubmit(new TreeConfirmEventArgs(new TreeNode[1]{ base.Tree.SelectedNode },e,sender));
-
+                    List<TreeNode> SelectedNodes = new List<TreeNode>() ;
+                    foreach (TreeNode item in Tree.Nodes)
+                    {
+                        i++;
+                        if (item.Checked)
+                        {
+                            SelectedNodes.Add(item);
+                        }
+                    }
+                    SelectedNode = SelectedNodes;
                 }
                 else
                 {
-                    MessageBox.Show(this,ErrStr,"错误");
+                    SelectedNode = Tree.SelectedNode;
                 }
+                Type t = SelectedNode.GetType();
+                Console.WriteLine(i.ToString());
+                Console.WriteLine(t.ToString());
+                //string ErrStr = TreeLogic.CheckSelectedNode(Tree.SelectedNode);
+                //if (ErrStr == null)
+                //{
+                //    base.OnTreeConfirmSubmit(new TreeConfirmEventArgs(new TreeNode[1]{ base.Tree.SelectedNode },e,sender));
+                //}
+                //else
+                //{
+                //    MessageBox.Show(this,ErrStr,"错误");
+                //}
             }
         }
         public class TreeTableQuery : TreeForm
         {
-            private DataGridView Table;
-            public TreeTableQuery(string Caption)
+            public DataGridView Table;
+            public TreeTableQuery(string Caption):base(Caption,false)
             {
-                this.Text = Caption;
-                Table = new DataGridView
-                {
-                    Size = new Size(300, 320),
+                ClientSize = new Size(400, 320);
+                Tree.Size = new Size(150,320);
+                Table = new DataGridView {
+                    Size = new Size(250, 320),
                     Location = new Point(150, 0),
+                    BackgroundColor = Color.White,
+                    ReadOnly = true,
+                    BorderStyle = BorderStyle.Fixed3D,
+                    AllowUserToAddRows = false
                 };
                 this.Controls.Add(Table);
-            }
-            public override void InitSize()
-            {
-                base.ClientSize = new Size(450, 320);
-                base.Tree.Location = new Point(0, 0);
-                base.Tree.Size = new Size(150, 320);
             }
             public override void NodeClick(object sender, TreeNodeMouseClickEventArgs e)
             {
@@ -236,7 +250,38 @@ namespace UI.FrameWork
                 {
                     Tree.SelectedNode = e.Node;
                     Table.DataSource = TreeLogic.GetTableSource(e.Node);
+                    Table.AutoResizeColumns();
                 }
+            }    }
+        public class TreeTableConfirm:TreeTableQuery
+        {
+            private Button ConfirmButton;
+            public TreeTableConfirm(string Caption) :base(Caption)
+            {
+
+                Table.Size = new Size(250, 270);
+                ConfirmButton = new Button {
+                    Size = new Size(100, 30) ,
+                    Location = new Point(225, 280),
+                    FlatStyle = FlatStyle.Flat,
+                    Image = Properties.Resources.TreeConfirm
+                };
+                ConfirmButton.FlatAppearance.BorderSize = 0;
+                ConfirmButton.MouseClick += ConfirmSelected;
+                this.Controls.Add(ConfirmButton);
+            }
+            private void ConfirmSelected(object sender, EventArgs e)
+            {
+                MessageBox.Show(this, Table.CurrentCellAddress.ToString(), "错误");
+                //string ErrStr = TreeLogic.CheckSelectedNode(Tree.SelectedNode);
+                //if (ErrStr == null)
+                //{
+                //    base.OnTreeConfirmSubmit(new TreeConfirmEventArgs(new TreeNode[1] { base.Tree.SelectedNode }, e, sender));
+                //}
+                //else
+                //{
+                //    MessageBox.Show(this, ErrStr, "错误");
+                //}
             }
         }
     }

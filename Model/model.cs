@@ -1,20 +1,34 @@
 ﻿using System.Linq;
 using System.Data;
 using System.Collections.Generic;
-using System.Windows.Forms;
+using System.Text.RegularExpressions;
+using System.Data.Odbc;
 
 namespace Model
 {
+    public class MyOdbc
+    {
+        private string OdbcConnStr = Properties.Resources.ConnStr;
+        private OdbcConnection conn;
+        public OdbcDataAdapter dap;
+        public void QueryDatabase(DataSet dst, string sql)
+        {
+            conn = new OdbcConnection(OdbcConnStr);
+            conn.Open();
+            dap = new OdbcDataAdapter(sql, conn);
+            dap.Fill(dst);
+            conn.Close();
+        }
+    }
     public abstract class TreeData
     {
-        public string sql;
-        public DataSet ds;
-        public abstract string Root();
-        public TreeData(string TreeSql)
+        public DataSet ds = new DataSet();
+        public TreeData()
         {
-            ds = new DataSet();
-            sql = TreeSql;
+            new MyOdbc().QueryDatabase(ds, Sql());
         }
+        public abstract string Root();
+        public abstract string Sql();
         public class NodeInfo
         {
             public string code;
@@ -31,7 +45,7 @@ namespace Model
                 this.children = children;
             }
         }
-        public virtual IEnumerable<NodeInfo> NodeTable(string parent)
+        public virtual IEnumerable<NodeInfo> NodeList(string parent)
         {
             IEnumerable<NodeInfo> matches = from row
                                           in ds.Tables[0].AsEnumerable()
@@ -48,45 +62,75 @@ namespace Model
                                           );
             return matches;
         }
-    }
-    public class CashTreeData:TreeData
-    {
-        private const string CashTreeSql = "select code,title,parent,NULL as tag from dimensions";
-        private string _root = "cash";
-        public CashTreeData() : base(CashTreeSql) { }
-        public override string Root()
+        public virtual DataTable TableData(string FieldName,string RegStr)
         {
-            return _root;
-        }
-        public DataTable TableData(TreeNode Node)
-        {
-            IEnumerable<DataRow> matches = from row
-                                            in ds.Tables[0].AsEnumerable()
-                                            where row.Field<string>("parent") == "root"
-                                            orderby row.Field<string>("code")
-                                            select row;
-            return matches;
+            var query = from row
+                        in ds.Tables[0].AsEnumerable()
+                        let matchs = new Regex(RegStr).Matches(row.Field<string>(FieldName))
+                        where matchs.Count>0
+                        orderby row.Field<string>("code")
+                        select row;
+            DataTable NewTable = query.Count<DataRow>() == 0 ? null : query.CopyToDataTable<DataRow>();
+            if (NewTable != null)
+            {
+                NewTable.Columns.Remove("parent");
+                NewTable.Columns.Remove("tag");
+                NewTable.Columns["code"].ColumnName = "项目编码";
+                NewTable.Columns["title"].ColumnName = "项目名称";
+            }
+            return NewTable;
         }
     }
     public class DimTreeData : TreeData
     {
-        private const string DimTreeSql = "select code,title,parent,NULL as tag from dimensions";
-        private string _root = "root";
-        public DimTreeData() : base(DimTreeSql) { }
         public override string Root()
         {
-            return _root;
+            return "root";
+        }
+        public override string Sql()
+        {
+            return "select code,title,parent,NULL as tag from dimensions";
         }
 
     }
-    public class AccTreeData : TreeData
+    public class CashTreeData:DimTreeData
     {
-        private const string AccTreeSql = "select code,title,parent,dim_number as tag from accounts";
-        private string _root = "root";
-        public AccTreeData() : base(AccTreeSql) { }
         public override string Root()
         {
-            return _root;
+            return "cash";
+        }
+    }
+    public class AccTreeData : TreeData
+    {
+        public override string Root()
+        {
+            return "root";
+        }
+        public override string Sql()
+        {
+            return "select code,title,parent,dim_number as tag from accounts";
+        }
+    }
+    public class AddressBookData : TreeData
+    {
+        private DataSet HrDs;
+        private string HrSql(string code)
+        {
+            return "SELECT basicinfo.code as 工号, basicinfo.title as 姓名, holdpost.title as 职务, basicinfo.phone as 联系方式, holdpost.pt_main as 职务备注 FROM organize INNER JOIN (basicinfo INNER JOIN holdpost ON basicinfo.code = holdpost.hr_number) ON organize.code = holdpost.organize_number WHERE organize.code ='" + code + "'";
+        }
+        public override string Root()
+        {
+            return "root";
+        }
+        public override string Sql()
+        {
+            return "select code,title,parent,NULL as tag from organize";
+        }
+        public override DataTable TableData(string code, string FieldName = null)
+        {
+            HrDs = new DataSet();
+            new MyOdbc().QueryDatabase(HrDs, HrSql(code));
+            return HrDs.Tables[0];
         }
     }
 }

@@ -51,10 +51,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{88b3940b-1539-4596-9349-79c711e940c4}</Project>
-      <Name>DAL</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Model\Model.csproj">
       <Project>{600b1332-b078-48d7-812b-d86fe1d5deb3}</Project>
       <Name>Model</Name>
