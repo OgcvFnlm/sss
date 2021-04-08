@@ -61,7 +61,7 @@ namespace Model.Properties {
         }
         
         /// <summary>
-        ///   查找类似 dsn=Maranda_Access 的本地化字符串。
+        ///   查找类似 dsn=Maranda_Mysql 的本地化字符串。
         /// </summary>
         internal static string ConnStr {
             get {

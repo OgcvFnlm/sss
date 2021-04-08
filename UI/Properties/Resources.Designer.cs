@@ -83,16 +83,6 @@ namespace UI.Properties {
         /// <summary>
         ///   查找 System.Drawing.Bitmap 类型的本地化资源。
         /// </summary>
-        public static System.Drawing.Bitmap BindAccs {
-            get {
-                object obj = ResourceManager.GetObject("BindAccs", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
-        /// </summary>
         public static System.Drawing.Bitmap BindDims {
             get {
                 object obj = ResourceManager.GetObject("BindDims", resourceCulture);
@@ -116,6 +106,16 @@ namespace UI.Properties {
         public static System.Drawing.Bitmap DeleteNode {
             get {
                 object obj = ResourceManager.GetObject("DeleteNode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap LoginPicture {
+            get {
+                object obj = ResourceManager.GetObject("LoginPicture", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -186,6 +186,16 @@ namespace UI.Properties {
         public static System.Drawing.Bitmap RenameNode {
             get {
                 object obj = ResourceManager.GetObject("RenameNode", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   查找 System.Drawing.Bitmap 类型的本地化资源。
+        /// </summary>
+        public static System.Drawing.Bitmap ShowBindAcc {
+            get {
+                object obj = ResourceManager.GetObject("ShowBindAcc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

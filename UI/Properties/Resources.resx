@@ -157,10 +157,13 @@
   <data name="NodeRootS" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\NodeRoot_选中.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BindAccs" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="ShowBindAcc" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\HeaderFooterLinkToPrevious.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="TreeConfirm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\frmLogin_确认.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="LoginPicture" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LoginPicture.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
